@@ -23,6 +23,25 @@ class StatsTest(unittest.TestCase):
         self.assertTrue(math.isnan(computedStats["max"]))
         self.assertTrue(math.isnan(computedStats["min"]))
 
+    def test_list_is_empty(self):
+        """Test the list_is_empty function."""
+        self.assertTrue(statistics.list_is_empty([]))
+        self.assertFalse(statistics.list_is_empty([1, 2, 3]))
+
+    def test_string_in_list(self):
+        """Test the behavior with a list containing a string."""
+        computedStats = statistics.calculateStats([1, 2, "three", 4])
+        self.assertTrue(math.isnan(computedStats["avg"]))
+        self.assertTrue(math.isnan(computedStats["max"]))
+        self.assertTrue(math.isnan(computedStats["min"]))
+
+    def test_space_in_list(self):
+        """Test the behavior with a list containing a space."""
+        computedStats = statistics.calculateStats([1, 2, " ", 4])
+        self.assertTrue(math.isnan(computedStats["avg"]))
+        self.assertTrue(math.isnan(computedStats["max"]))
+        self.assertTrue(math.isnan(computedStats["min"]))
+
 
 if __name__ == "__main__":
     unittest.main()
